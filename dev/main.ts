@@ -2,10 +2,17 @@
 /// <reference path="driver.ts"/>
 
 class Game {
-    
+    k:Kart;
     constructor() {
-        let k:Kart = new Kart();
-        let d:Driver = new Driver();
+        this.k = new Kart(200, 200);
+        requestAnimationFrame(()=>this.gameLoop());
+    }
+
+    gameLoop(){
+        this.k.move();
+        this.k.draw();
+        requestAnimationFrame(()=>this.gameLoop());
+        //console.log('this is the gameloop');
     }
     
 } 
@@ -13,5 +20,7 @@ class Game {
 
 // load
 window.addEventListener("load", function() {
+    
     new Game();
+    
 });
